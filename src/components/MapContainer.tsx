@@ -1,10 +1,10 @@
-import React, { Component } from "react;
-import "./MapContainer.css";
+import React, { Component } from "react";
+import "../styles/MapContainer.css";
 
-MapContainerProps
-
-class MapContainer extends Component<> {
+class MapContainer extends Component {
   render() {
-    
+    return <div className="map-container">{this.props.children}</div>;
   }
 }
+
+export default MapContainer;

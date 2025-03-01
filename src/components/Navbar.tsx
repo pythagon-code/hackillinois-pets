@@ -5,7 +5,6 @@ import LinkButton from "./LinkButton";
 import "./Navbar.css";
 
 interface NavbarProps {
-  links: { label: string; to: string }[];
   className?: string;
 }
 
@@ -15,7 +14,15 @@ class Navbar extends Component<NavbarProps> {
   };
 
   render() {
-    const { links, className } = this.props;
+    const { className } = this.props;
+
+    const links = [
+      { label: "Home", to: "/" },
+      { label: "About", to: "/about" },
+      { label: "Contact", to: "/contact" },
+      { label: "Game", to: "/game"}
+    ];
+
     return (
       <nav className={className}>
         {links.map((link, index) => (
