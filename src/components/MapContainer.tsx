@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Pet from "./Pet";
 import "../styles/MapContainer.css";
+import Dialogue from "./Dialogue";
 
 
 interface PetData {
@@ -51,7 +52,7 @@ class MapContainer extends Component {
         yVel: -4,
         damage: 10,
         isPushedBack: false, // Initial state of push-back
-      },
+      }
     };
   }
 
@@ -232,6 +233,7 @@ class MapContainer extends Component {
   render() {
     return (
       <div className="map-container">
+        <Dialogue />
         {Object.values(this.pets).map((pet) => (
           <Pet
             key={pet.id}
