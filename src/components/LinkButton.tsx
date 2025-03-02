@@ -1,7 +1,7 @@
 "use client";
 
 import React, { Component } from "react";
-import "./LinkButton.css"
+import "../styles/LinkButton.css"
 
 interface LinkButtonProps {
   to: string;

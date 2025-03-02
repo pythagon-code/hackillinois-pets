@@ -1,7 +1,7 @@
 "use client";
 
 import React, { Component } from "react";
-import "./Button.css"
+import "../styles/Button.css"
 
 interface ButtonProps {
   onClick: () => void;

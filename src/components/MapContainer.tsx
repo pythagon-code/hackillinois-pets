@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Pet from "./Pet";
-import "../styles/MapContainer.css"; // Import the CSS file for MapContainer
+import "../styles/MapContainer.css";
+
 
 interface PetData {
   id: number;
@@ -64,8 +65,12 @@ class MapContainer extends Component {
   }
 
   counter: number = 0;
+  done: boolean = false;
 
   movePet(id1: number, id2: number) {
+    if (this.done) {
+      return;
+    }
     const pet1 = this.pets[id1];
     const pet2 = this.pets[id2];
     if (!pet1 || !pet2) return;
@@ -203,6 +208,13 @@ class MapContainer extends Component {
       pet1.y += pet1.yVel;
       pet2.x += pet2.xVel;
       pet2.y += pet2.yVel;
+    }
+
+    if (pet1.health <= 0 || pet2.health <= 0) {
+      let winner = pet1.health <= 0 ? `Pet ${pet2.id} Wins!` : `Pet ${pet1.id} Wins!`;
+    
+      alert(winner);
+      this.done = true;
     }
 
     // Update the pets' positions

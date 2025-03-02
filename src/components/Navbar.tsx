@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import LinkButton from "./LinkButton";
-import "./Navbar.css";
+import "../styles/Navbar.css";
 
 interface NavbarProps {
   className?: string;
