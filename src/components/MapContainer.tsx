@@ -12,6 +12,7 @@ interface PetData {
   health: number;
   xVel: number;  // Velocity in x direction
   yVel: number;  // Velocity in y direction
+  damage: number;
   isPushedBack: boolean; // Flag for push-back state
 }
 
@@ -32,8 +33,9 @@ class MapContainer extends Component {
         height: 50,
         imageUrl: "/images/pet.svg",
         health: 100,
-        xVel: 2,
-        yVel: 2,
+        xVel: 4,
+        yVel: 3,
+        damage: 10,
         isPushedBack: false, // Initial state of push-back
       },
       2: {
@@ -44,8 +46,9 @@ class MapContainer extends Component {
         height: 50,
         imageUrl: "/images/pet.svg",
         health: 100,
-        xVel: -2,
-        yVel: -2,
+        xVel: -5,
+        yVel: -4,
+        damage: 10,
         isPushedBack: false, // Initial state of push-back
       },
     };
@@ -81,7 +84,7 @@ class MapContainer extends Component {
     const pushBackStep = 5; // Adjust the push-back step distance
 
     // Boundary check and movement for pet1 and pet2 inside the loop
-    for (let i = 0; i < 1; i++) {
+     {
       // Move pet1 if not pushed back
       if (!pet1.isPushedBack) {
         pet1.x += pet1.xVel;
@@ -157,6 +160,8 @@ class MapContainer extends Component {
       // Both pets are touching, enable push-back for both
       pet1.isPushedBack = true;
       pet2.isPushedBack = true;
+      pet1.health -= pet2.damage;
+      pet2.health -= pet1.damage;
 
       // Push the pets apart by reversing their velocities
       pet1.xVel = -pet1.xVel;
