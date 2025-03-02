@@ -6,6 +6,7 @@ import "../styles/Button.css"
 interface ButtonProps {
   onClick: () => void;
   className?: string;
+  children: React.ReactNode;
 }
 
 class Button extends Component<ButtonProps> {

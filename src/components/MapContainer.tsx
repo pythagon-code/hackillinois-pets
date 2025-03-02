@@ -38,7 +38,7 @@ class MapContainer extends Component {
         xVel: 4,
         yVel: 3,
         damage: 10,
-        isPushedBack: false, // Initial state of push-back
+        isPushedBack: false
       },
       2: {
         id: 2,
@@ -51,7 +51,7 @@ class MapContainer extends Component {
         xVel: -5,
         yVel: -4,
         damage: 10,
-        isPushedBack: false, // Initial state of push-back
+        isPushedBack: false
       }
     };
   }
