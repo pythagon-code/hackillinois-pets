@@ -1,6 +1,7 @@
 "use client"
 
 import React from 'react';
+import HealthBar from './HealthBar';
 
 interface PetProps {
   x: number;
@@ -12,6 +13,14 @@ interface PetProps {
 
 const Pet: React.FC<PetProps> = ({ x, y, width, height, imageUrl }) => {
   return (
+    <>
+    <HealthBar
+        x={x}
+        y={y}
+        width={100 /** ?? */}
+        height={5} // Set a fixed height for the health bar
+        health={100}
+      />
     <div
       className="pet"
       style={{
@@ -24,6 +33,7 @@ const Pet: React.FC<PetProps> = ({ x, y, width, height, imageUrl }) => {
         backgroundSize: 'cover',
       }}
     />
+    </>
   );
 };
 

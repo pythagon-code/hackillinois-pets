@@ -1,38 +1,36 @@
-import React from "react";
-import "../styles/HealthBar.css"; // Import the CSS file for the HealthBar
+"use client";
+
+import React from 'react';
 
 interface HealthBarProps {
   x: number;
   y: number;
-  width: number;
-  height: number;
-  health: number; // Health value between 0 and 100
+  maxHealth: number;
+  currHealth: number;
 }
 
-const HealthBar: React.FC<HealthBarProps> = ({ x, y, width, height, health }) => {
-  // Calculate the width of the health bar based on the health percentage
-  const healthWidth = (width * health) / 100;
+const HealthBar: React.FC<HealthBarProps> = ({ x, y, maxHealth, currHealth }) => {
+  const healthPercentage = (currHealth / maxHealth) * 100;
 
   return (
     <div
-      className="health-bar-container"
+      className="health-bar"
       style={{
-        position: "absolute",
+        position: 'absolute',
         left: `${x}px`,
-        top: `${y - 10}px`, // Place it just above the pet
-        width: `${width}px`,
-        height: `${height}px`,
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-        borderRadius: "5px",
+        top: `${y}px`,
+        width: '100px', // You can adjust this as necessary
+        height: '10px', // Adjust for desired thickness
+        backgroundColor: 'gray',
+        borderRadius: '5px',
       }}
     >
       <div
-        className="health-bar"
         style={{
-          width: `${healthWidth}px`,
-          height: "100%", // Ensure the health bar takes up the full height of the container
-          backgroundColor: "green", // Color of the health bar
-          borderRadius: "5px 0 0 5px", // Rounded left side of the health bar
+          width: `${healthPercentage}%`,
+          height: '100%',
+          backgroundColor: 'green',
+          borderRadius: '5px',
         }}
       />
     </div>

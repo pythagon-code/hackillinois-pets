@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Pet from "./Pet";
+import Pet from "./Pet"; // Import the updated Pet component
 import "../styles/MapContainer.css"; // Import the CSS file for MapContainer
 
 interface PetData {
@@ -11,6 +11,7 @@ interface PetData {
   imageUrl: string;
   xVel: number;  // Horizontal velocity
   yVel: number;  // Vertical velocity
+  health: number; // Health percentage
 }
 
 class MapContainer extends Component {
@@ -21,8 +22,8 @@ class MapContainer extends Component {
   constructor(props: any) {
     super(props);
     this.pets = {
-      1: { id: 1, x: 50, y: 50, width: 50, height: 50, imageUrl: "/images/pet.svg", xVel: 2, yVel: 3 },
-      2: { id: 2, x: 100, y: 100, width: 50, height: 50, imageUrl: "/images/pet.svg", xVel: -3, yVel: -2.2 },
+      1: { id: 1, x: 50, y: 50, width: 50, height: 50, imageUrl: "/images/pet.svg", xVel: 1, yVel: 1, health: 100 },
+      2: { id: 2, x: 100, y: 100, width: 50, height: 50, imageUrl: "/images/pet.svg", xVel: -1, yVel: -1, health: 50 },
     };
   }
 
@@ -76,11 +77,13 @@ class MapContainer extends Component {
         {Object.values(this.pets).map((pet) => (
           <Pet
             key={pet.id}
+            id={pet.id}
             x={pet.x}
             y={pet.y}
             width={pet.width}
             height={pet.height}
             imageUrl={pet.imageUrl}
+            health={pet.health} // Pass the health to the Pet component
           />
         ))}
       </div>
