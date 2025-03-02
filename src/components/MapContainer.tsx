@@ -54,6 +54,17 @@ class MapContainer extends Component {
     };
   }
 
+  random: number = 0;
+
+  getRandomFactor() {
+    if (this.random != 0)
+      return this.random;
+    this.random = Math.random() * 0.1 - 0.2;
+    return this.random;
+  }
+
+  counter: number = 0;
+
   movePet(id1: number, id2: number) {
     const pet1 = this.pets[id1];
     const pet2 = this.pets[id2];
@@ -91,6 +102,8 @@ class MapContainer extends Component {
         pet1.y += pet1.yVel;
       } else {
         // Apply push-back if it's pushed back
+        pet1.xVel += this.getRandomFactor();
+        pet1.yVel += this.getRandomFactor();
         pet1.x -= pet1.xVel * pushBackStep;
         pet1.y -= pet1.yVel * pushBackStep;
       }
@@ -100,21 +113,29 @@ class MapContainer extends Component {
         pet1.x = 0;
         pet1.xVel = 0; // Stop movement when hitting left boundary
         pet1.isPushedBack = false; // Disable push-back
+        this.random = this.counter = 0;
       }
       if (pet1.x + 4.5*pet1.width > this.containerWidth) {
         pet1.x = this.containerWidth - 4.5*pet1.width; // Adjust position to the left of the boundary
         pet1.xVel = 0; // Stop movement when hitting right boundary
         pet1.isPushedBack = false; // Disable push-back
+        this.random = this.counter = 0;
       }
       if (pet1.y < 0) {
         pet1.y = 0;
         pet1.yVel = 0; // Stop movement when hitting top boundary
         pet1.isPushedBack = false; // Disable push-back
+        this.random = this.counter = 0;
       }
       if (pet1.y + pet1.height > this.containerHeight) {
         pet1.y = this.containerHeight - pet1.height;
         pet1.yVel = 0; // Stop movement when hitting bottom boundary
         pet1.isPushedBack = false; // Disable push-back
+        this.random = this.counter = 0;
+      }
+      if (this.counter++ >= 20) {
+        pet1.isPushedBack = false; // Disable push-back
+        this.random = this.counter = 0;
       }
 
       // Move pet2 if not pushed back
@@ -123,6 +144,8 @@ class MapContainer extends Component {
         pet2.y += pet2.yVel;
       } else {
         // Apply push-back if it's pushed back
+        pet2.xVel += this.getRandomFactor();
+        pet2.yVel += this.getRandomFactor();
         pet2.x -= pet2.xVel * pushBackStep;
         pet2.y -= pet2.yVel * pushBackStep;
       }
@@ -148,6 +171,10 @@ class MapContainer extends Component {
         pet2.yVel = 0; // Stop movement when hitting bottom boundary
         pet2.isPushedBack = false; // Disable push-back
       }
+      if (this.counter++ >= 20) {
+        pet2.isPushedBack = false; // Disable push-back
+        this.random = this.counter = 0;
+      }
     }
 
     // Check if the pets are touching
@@ -164,6 +191,7 @@ class MapContainer extends Component {
       pet2.health -= pet1.damage;
 
       // Push the pets apart by reversing their velocities
+      
       pet1.xVel = -pet1.xVel;
       pet1.yVel = -pet1.yVel;
 
